@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Theater {
@@ -5,9 +6,9 @@ public class Theater {
     private String name;
     private String location;
 
-    private List<Show> shows;
+    private List<Show> shows = new ArrayList<>();
 
-    public Theater(String name, String location, String id) {
+    public Theater( String id, String name, String location) {
         this.name = name;
         this.location = location;
         this.id = id;

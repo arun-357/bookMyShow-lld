@@ -10,7 +10,7 @@ public class Show {
     private Map<String, Booking> bookings = new HashMap<>();
     private LocalDateTime showTime;
 
-    public Show(Movie movie, String id, Theater theater, List<Seat> seats, LocalDateTime showTime, Integer capacity) {
+    public Show(String id, Movie movie, Theater theater, LocalDateTime showTime, Integer capacity) {
         this.movie = movie;
         this.id = id;
         this.theater = theater;
@@ -45,11 +45,11 @@ public class Show {
         List<Seat> bookedSeat = new ArrayList<>();
         for (int sn: seatNumbers) {
             Seat seat = seats.get(sn);
-            if (seat.isAvailable()) {
-                bookedSeat.add(seat);
+            if (!seat.isAvailable()) {
+                System.out.println("Un-available Seats, Please book available seats");
+                return null;
             }
-            System.out.println("Un-available Seats, Please book available seats");
-            return null;
+            bookedSeat.add(seat);
         }
 
         Booking newBooking = new Booking(UUID.randomUUID().toString(), bookedSeat, this, user);
